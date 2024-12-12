@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8800:8800"
+    environment:
+      - DATABASE_URL=postgresql://university_user:securepassword@database:5432/university_db
+    depends_on:
+      - database
+
+  database:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: university_user
+      POSTGRES_PASSWORD: securepassword
+      POSTGRES_DB: university_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+
+volumes:
+  postgres_data:
