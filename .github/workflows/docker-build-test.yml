@@ -1,0 +1,29 @@
+name: Docker Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker images
+        run: |
+          docker-compose build
+
+      - name: Run Docker containers
+        run: |
+          docker-compose up -d
+
+      - name: Stop and clean up
+        run: |
+          docker-compose down
