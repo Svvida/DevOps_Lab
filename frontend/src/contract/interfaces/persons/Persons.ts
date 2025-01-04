@@ -1,9 +1,5 @@
+import { GenderEnum } from 'contract/enums/Enums';
 import type { IDegreeCourse, IDegreePath, IModule } from 'contract/interfaces/academics/Academics';
-
-export enum GenderEnum {
-  Men = 'Men',
-  Women = 'Women',
-}
 
 export interface IAddress {
   id: string;
@@ -48,4 +44,13 @@ export interface ITeacher {
   contactPhone: string;
   name: string;
   surname: string;
+}
+
+export interface IStudentTodo {
+  id: number;
+  title: string;
+  description: string;
+  endDate: Date;
+  color: string;
+  student: number;
 }

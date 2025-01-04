@@ -1,4 +1,4 @@
-import { useTranslation } from '../../../../../../node_modules/react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Avatar, Box, Typography, CircularProgress } from '@mui/material';
 import { useGetLoggedAccountBasicDataQuery } from 'redux/apiSlices/loggedAccount/LoggedAccount.Api.Slice';
 import UserIcon from 'assets/images/userPhoto.png';

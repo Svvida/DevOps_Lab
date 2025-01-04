@@ -5,13 +5,10 @@ import type { IGetStudentGradesQueryParams } from 'contract/slices/academics/Gra
 export const gradesSlice = Api.injectEndpoints({
   endpoints: builder => ({
     getStudentGrades: builder.query<IGrade[], IGetStudentGradesQueryParams>({
-      query: ({ studentId, accountId }) => ({
+      query: ({ studentId }) => ({
         url: `/grades/${studentId}`,
-        params: {
-          accountId,
-        },
       }),
-      transformResponse: (response?: IGrade[]) => response ?? [],
+      transformResponse: (response?: IGrade[]) => (Array.isArray(response) ? response : []),
     }),
   }),
 });

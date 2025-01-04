@@ -1,26 +1,36 @@
-import React, { useState } from 'react';
-import { useTranslation } from '../../../../node_modules/react-i18next';
-import { Box, Button, Menu, MenuItem, Typography, useMediaQuery } from '@mui/material';
+import { useState, ReactElement } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Box, ButtonProps, Menu, MenuItem, Typography } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
+import DropdownButton from './elements/DropdownButton';
 
 interface IDropdownItem {
   label: string;
   onClick?: () => void;
-  icon: React.ReactElement;
+  icon: ReactElement;
   nonClickable?: boolean;
 }
 
 interface IDropdownMenuProps {
   label: string;
   items: IDropdownItem[];
-  startIcon?: React.ReactElement;
+  startIcon?: ReactElement;
   hideLabelOnMobile?: boolean;
+  buttonVariant?: ButtonProps['variant'];
+  customButton?: ReactElement;
 }
 
-function DropdownMenu({ label, items, startIcon, hideLabelOnMobile }: IDropdownMenuProps) {
-  const { t, i18n } = useTranslation();
+function DropdownMenu({
+  label,
+  items,
+  startIcon,
+  hideLabelOnMobile,
+  buttonVariant = 'outlined',
+  customButton,
+}: IDropdownMenuProps) {
+  const { i18n } = useTranslation();
   const currentLanguage = i18n.language;
-  const isMobile = useMediaQuery('(max-width:910px)');
+
   const [selection, setSelection] = useState({
     label,
     icon: startIcon,
@@ -39,9 +49,14 @@ function DropdownMenu({ label, items, startIcon, hideLabelOnMobile }: IDropdownM
 
   return (
     <Box sx={{ m: 1 }} key={currentLanguage}>
-      <Button onClick={handleClick} startIcon={selection.icon}>
-        {hideLabelOnMobile && isMobile ? null : t(selection.label)}
-      </Button>
+      <DropdownButton
+        customButton={customButton}
+        handleClick={handleClick}
+        selection={selection}
+        buttonVariant={buttonVariant}
+        hideLabelOnMobile={hideLabelOnMobile}
+      />
+
       <Menu id="dropdown-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
         {items.map(item => (
           <MenuItem

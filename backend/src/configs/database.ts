@@ -8,6 +8,8 @@ const { DATABASE_URL, NODE_ENV } = process.env;
 
 const isDevelopment = NODE_ENV !== 'PRODUCTION';
 
+console.log(DATABASE_URL);
+
 const options: DataSourceOptions & SeederOptions = {
     type: 'postgres',
     url: DATABASE_URL,

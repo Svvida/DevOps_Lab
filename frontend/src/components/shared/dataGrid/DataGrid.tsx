@@ -3,14 +3,14 @@ import { Divider, type BoxProps } from '@mui/material';
 import { AgGridReact, type AgGridReactProps } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
-import './CustomAgGrid.scss';
+import './styles/CustomAgGrid.scss';
 import ColumnVisibilityDropdown from './elements/columnsVisibility/ColumnsVisibility';
-import { DataGridContainer, DataGridWrapper, ToolbarContainer } from './elements/containers/Containers';
 import DataGridLoader from './elements/loader/DataGridLoader';
 import Pagination from './elements/pagination/Pagination';
 import RowExport from './elements/rowExport/RowExport';
 import BackendSearchBar from './elements/searchBar/BackendSearchBar';
 import FrontEndSearchBar from './elements/searchBar/FrontEndSearchBar';
+import { DataGridContainer, DataGridWrapper, ToolbarContainer } from './styles/Containers';
 
 interface IColumnDefWithField {
   field: string;
@@ -27,8 +27,9 @@ interface IAgGridBoxProps extends Omit<AgGridReactProps, 'pagination'> {
   sx?: BoxProps['sx'];
   isLoading?: boolean;
   handleSearch?: (value: string) => void;
-  searchVariant: SearchBarVariantEnum;
-  exportFileName: string;
+  smallVersion?: boolean;
+  searchVariant?: SearchBarVariantEnum;
+  exportFileName?: string;
   pagination?: {
     setPagination: (page: number, pageSize: number) => void;
     page: number;
@@ -37,16 +38,17 @@ interface IAgGridBoxProps extends Omit<AgGridReactProps, 'pagination'> {
   };
 }
 
-function DataGrid({
+const DataGrid = ({
   sx,
   isLoading = false,
   handleSearch,
   pagination,
   columnDefs,
   searchVariant,
+  smallVersion,
   exportFileName,
   ...props
-}: IAgGridBoxProps) {
+}: IAgGridBoxProps) => {
   const gridRef = useRef<AgGridReact>(null);
   const columnsSettings =
     columnDefs
@@ -60,15 +62,17 @@ function DataGrid({
 
   return (
     <DataGridContainer>
-      <ToolbarContainer>
-        <ColumnVisibilityDropdown columnsSettings={columnsSettings} gridRef={gridRef} />
-        <Divider sx={{ py: 1.5 }} />
-        <RowExport columns={columnsSettings} gridRef={gridRef} fileName={exportFileName} />
-        {searchVariant === SearchBarVariantEnum.FrontEnd && <FrontEndSearchBar gridRef={gridRef} />}
-        {searchVariant === SearchBarVariantEnum.BackEnd && handleSearch ? (
-          <BackendSearchBar onSearch={handleSearch} disabled={isLoading} />
-        ) : null}
-      </ToolbarContainer>
+      {!smallVersion && (
+        <ToolbarContainer>
+          <ColumnVisibilityDropdown columnsSettings={columnsSettings} gridRef={gridRef} />
+          <Divider sx={{ py: 1.5 }} />
+          {exportFileName ? <RowExport columns={columnsSettings} gridRef={gridRef} fileName={exportFileName} /> : null}
+          {searchVariant === SearchBarVariantEnum.FrontEnd && <FrontEndSearchBar gridRef={gridRef} />}
+          {searchVariant === SearchBarVariantEnum.BackEnd && handleSearch ? (
+            <BackendSearchBar onSearch={handleSearch} disabled={isLoading} />
+          ) : null}
+        </ToolbarContainer>
+      )}
 
       <DataGridWrapper sx={sx} className="ag-theme-quartz">
         <AgGridReact
@@ -83,6 +87,6 @@ function DataGrid({
       {pagination ? <Pagination {...pagination} disabled={isLoading} /> : null}
     </DataGridContainer>
   );
-}
+};
 
 export default DataGrid;

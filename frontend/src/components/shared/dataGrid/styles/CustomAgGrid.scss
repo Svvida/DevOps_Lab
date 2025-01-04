@@ -1,0 +1,58 @@
+$ag-background-color: #ffffff;
+$ag-odd-row-background-color: #f9f9f9;
+$ag-header-background-color: #0962e7;
+$ag-header-foreground-color: #ffffff;
+$ag-font-size: 14px;
+$ag-header-font-size: 16px;
+$ag-grid-size: 1px;
+$ag-header-height: 56px;
+$ag-row-height: 52px;
+$ag-foreground-color: #000000;
+$ag-secondary-foreground-color: #757575;
+$ag-border-color: #e0e0e0;
+$ag-header-column-separator: #e0e0e0;
+
+.ag-theme-quartz {
+  --ag-odd-row-background-color: #{$ag-odd-row-background-color};
+  --ag-header-background-color: #{$ag-header-background-color};
+  --ag-header-foreground-color: #{$ag-header-foreground-color};
+  --ag-header-height: #{$ag-header-height};
+  --ag-row-height: #{$ag-row-height};
+
+  .ag-root-wrapper {
+    border-radius: 0px;
+  }
+
+  .ag-header {
+    font-size: $ag-header-font-size;
+    border-radius: 0px;
+  }
+
+  .ag-header-cell {
+    font-weight: 600;
+  }
+
+  .ag-header-cell[aria-colindex='1']:not(:first-child) .ag-header-cell-label::before {
+    display: none;
+  }
+
+  .ag-header-cell:not([aria-colindex='1']):not(:first-child) .ag-header-cell-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    padding: 7px 1px;
+    background: white;
+  }
+
+  .ag-row {
+    color: rgb(53, 50, 50);
+  }
+
+  .ag-row:hover {
+    background-color: lighten($ag-header-background-color, 50%);
+  }
+
+  .ag-icon {
+    color: white;
+  }
+}

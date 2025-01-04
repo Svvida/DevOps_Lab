@@ -5,6 +5,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "allowJs": true,
+    "checkJs": false,
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
@@ -29,13 +30,24 @@
     "noPropertyAccessFromIndexSignature": true,
     "baseUrl": "./src",
     "paths": {
+      "assets/*": ["assets/*"],
       "components/*": ["components/*"],
-      "features/*": ["features/*"],
-      "assets/*": ["assets/*"]
+      "configs/*": ["configs/*"],
+      "contexts/*": ["contexts/*"],
+      "contract/*": ["contract/*"],
+      "hooks/*": ["hooks/*"],
+      "i18n/*": ["i18n/*"],
+      "layouts/*": ["layouts/*"],
+      "middlewares/*": ["middlewares/*"],
+      "routes/*": ["routes/*"],
+      "theme/*": ["theme/*"],
+      "types/*": ["types/*"],
+      "utils/*": ["utils/*"]
     }
   },
-  "include": ["src/**/*", "./custom.d.ts"],
+  "include": ["src/**/*", "./custom.d.ts", "jest.config.js", "eslint.config.js" ],
   "exclude": ["node_modules", "dist"],
+
   "references": [
     {
       "path": "./tsconfig.node.json"

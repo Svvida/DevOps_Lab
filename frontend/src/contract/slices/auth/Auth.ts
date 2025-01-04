@@ -4,7 +4,6 @@ export interface ILoginRequest {
   identifier: string;
   password: string;
   rememberMe: boolean;
-  sessionID: string;
 }
 
 export interface ILoginResponse {
@@ -13,17 +12,14 @@ export interface ILoginResponse {
 
 export interface ILogoutResponse {}
 
-export interface IRefreshRequest {
-  sessionID: string;
-}
+export interface IRefreshRequest {}
 
 export interface IRefreshResponse {
   accessToken: string;
 }
 
 export interface IDecodedJwt {
-  token: string;
-  accountId: string;
+  accountId: number;
   roles: RolesEnum[];
   exp?: number;
   iat?: number;

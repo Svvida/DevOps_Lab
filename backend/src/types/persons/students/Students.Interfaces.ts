@@ -5,13 +5,15 @@ import { StudentModule } from 'entities/studentDegrees/StudentModule.Entity';
 import { Student } from 'entities/students/Student.Entity';
 import { IPersonRelations } from '../persons/Persons.Interfaces';
 import { Grade } from 'entities/studentsGrades/StudentGrades.Entity';
+import { StudentTodo } from 'entities/students/StudentTodos.Entity';
 
 export interface IStudent extends IPersonRelations {
     id: number;
     degreeCourses: StudentDegreeCourse[];
     degreePaths: StudentDegreePath[];
     modules: StudentModule[];
-    studentsGrades: Grade[];
+    studentGrades: Grade[];
+    todos: StudentTodo[];
 }
 
 export interface IStudentWithRoles extends Student {

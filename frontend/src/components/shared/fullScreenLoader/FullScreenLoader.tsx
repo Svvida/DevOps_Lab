@@ -4,7 +4,7 @@ interface IFullScreenLoader {
   bgColor?: string;
 }
 
-function FullScreenLoader({ bgColor }: IFullScreenLoader) {
+const FullScreenLoader = ({ bgColor }: IFullScreenLoader) => {
   return (
     <Box
       sx={{
@@ -16,13 +16,12 @@ function FullScreenLoader({ bgColor }: IFullScreenLoader) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: bgColor || 'rgba(255, 255, 255, 0.712)',
+        backgroundColor: bgColor ?? 'rgba(255, 255, 255, 0.712)',
         zIndex: 1300,
       }}
     >
       <CircularProgress color="primary" />
     </Box>
   );
-}
-
+};
 export default FullScreenLoader;

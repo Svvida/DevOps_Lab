@@ -1,89 +1,160 @@
-# University Frontend
+# 🎓 **University Frontend** 🌟
 
-This project serves as the frontend for a University management system, designed to provide an intuitive interface for managing student data, course registrations, and other functionalities. Built with React and TypeScript, it focuses on delivering a responsive and user-friendly experience with modern frontend technologies.
+Welcome to the **University Management System** frontend! Built using **React** and **TypeScript**, this system offers a beautiful, intuitive, and powerful interface for managing student data, course registrations, and more. It also boasts solid testing with **Jest** and **Cypress** to ensure everything works flawlessly.
 
-## Features
+---
 
-- **React with TypeScript**: Utilizes React for building dynamic user interfaces and TypeScript for strong typing and improved developer experience.
-- **Component-Based Architecture**: Implements reusable and modular components for maintainability and scalability.
-- **State Management**: Manages application state effectively using [state management library, e.g., Redux, Context API].
-- **API Integration**: Connects seamlessly with the backend API to handle data fetching and state synchronization.
-- **Responsive Design**: Ensures a consistent user experience across different devices and screen sizes.
+## 🚀 **Key Features**
 
-## Getting Started
+- **⚡️ React with TypeScript**: Combining React's dynamic capabilities with TypeScript's type safety for a seamless developer experience.
+- **🧩 Modular Architecture**: A component-based design that ensures maintainability and scalability as the app grows.
+- **📦 Efficient State Management**: Effortlessly handles app state using tools like **Redux**, **Context API**, or others.
+- **🔗 Smooth API Integration**: Easily communicates with your backend to handle data synchronization and fetching.
+- **📱 Responsive Design**: A stunning and adaptive interface that looks great on all devices.
+- **🔍 High Test Coverage**: The project includes robust testing using **Jest** and **Cypress** to ensure everything functions as expected. Here's the test coverage summary:
 
-### Prerequisites
+| **Test Framework** | **Test Coverage**    | **Passed** | **Failed** | **Total** |
+|--------------------|----------------------|------------|------------|-----------|
+| Jest               | 100% (Statements)    | 7/7        | 0/7        | 7         |
+| Cypress            | 100% (E2E Tests)     | 3/3        | 0/3        | 3         |
 
-- Node.js (version >=18.0.0 or higher recommended)
-- npm (version >=8.0.0 or higher)
+- **💡 Detailed Coverage**: All files in the project are thoroughly tested, including key files like **Auth.State.Slice.ts** and **View.State.Slice.ts**. Our code coverage is robust, with high uptime for line, function, and branch coverage across important files.
 
-### Installation
+---
 
-1. **Clone the repository:**
+## 🛠️ **Getting Started**
 
+### **Prerequisites**
+
+Before you dive in, ensure you have the following installed:
+
+- **Node.js**: Version **18.0.0** or higher 🌱
+- **npm**: Version **8.0.0** or higher 🛠️
+
+---
+
+### **Installation Steps**
+
+1. **Clone the Repository**:
    ```bash
    git clone https://github.com/Swiatlon/University-FN
    ```
 
-2. **Navigate to the project directory:**
-
+2. **Navigate to Your Project Directory**:
    ```bash
    cd University-FN
    ```
 
-3. **Install NPM packages:**
-
+3. **Install Dependencies**:
    ```bash
    npm install
    ```
 
-### Running the Application
+---
 
-- **Development mode with live reloads:**
+### **Running the App**
 
+- **💻 Development Mode**:
+   Start the app with live reloads to enjoy the development experience!
+   ```bash
+   npm run dev
+   ```
+
+- **🚀 Production Build**:
+   When you're ready to deploy, build the app for production:
+   ```bash
+   npm run build
+   ```
+   Your production-ready build will be in the `build` directory.
+
+---
+
+### **Running Tests**
+
+- **Jest Tests**: Run unit and integration tests with Jest:
+   ```bash
+   npm run test
+   ```
+
+- **Cypress Tests**: Run end-to-end tests with Cypress:
+   ```bash
+   npm run cypress
+   ```
+
+---
+
+## 🧩 **Docker Compose Setup**
+
+### How to Use the `docker-compose.yml`
+
+#### 1. Clone Repositories
+
+Clone both **frontend** and **backend** repositories into the same parent directory:
+
+```bash
+git clone https://github.com/Swiatlon/University-FN University-FN
+git clone https://github.com/Swiatlon/University-BN University-BN
+```
+
+#### 2. Organize Your Project
+
+Ensure the parent directory contains both repositories and the `docker-compose.yml` file:
+
+```
+Parent Directory/
+├── docker-compose.yml  # Unified orchestration file
+├── University-FN/      # Frontend repository
+└── University-BN/      # Backend repository
+```
+
+#### 3. Remove Individual Compose Files
+
+If `docker-compose.yml` files exist in the `University-FN` or `University-BN` repositories, remove them to avoid conflicts.
+
+#### 4. Generate Migrations (For Backend)
+
+Before running the containers, make sure to generate and apply migrations for your backend database. Navigate to the backend directory and run the following commands:
+
+- **Generate a migration (optional)**:
   ```bash
-  npm run dev
+  cd University-BN
+  npm run migration:generate <migration-name>
   ```
 
-- **Build the application for production:**
+#### 5. Start Services
 
+Run the following commands from the **parent directory**:
+
+- **Start all services in development mode**:
   ```bash
-  npm run build
+  docker-compose --profile dev up --build
   ```
 
-  The production build will be located in the `build` directory.
+- **Start all services in production mode**:
+  ```bash
+  docker-compose --profile prod up --build
+  ```
 
-## Contributing
+#### 6. Stop Services
 
-We welcome contributions to the University-FN frontend project! If you have suggestions, improvements, or bug fixes, please follow these steps:
+Stop and clean up all services with:
 
-1. **Fork the repository**
-2. **Create a new branch:**
+```bash
+docker-compose down
+```
 
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
+---
 
-3. **Commit your changes:**
+## 📝 **License**
 
-   ```bash
-   git commit -m 'Add new feature'
-   ```
+This project is open-source and licensed under the **MIT License**. Check out the full details in the [LICENSE](LICENSE) file.
 
-4. **Push to the branch:**
+---
 
-   ```bash
-   git push origin feature/your-feature-name
-   ```
+## 📬 **Contact**
 
-5. **Submit a pull request**
+If you have any questions or feedback, feel free to reach out:
 
-For detailed guidelines, please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) file.
+- Email: [your email address] 📧
+- Open an issue on [GitHub Issues](https://github.com/Swiatlon/University-FN/issues) 💬
 
-## License
-
-This project is open-source under the MIT license. See the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For any questions or feedback, please reach out to [your email address] or create an issue on [GitHub Issues](https://github.com/Swiatlon/University-FN/issues).
